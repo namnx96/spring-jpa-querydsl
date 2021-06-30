@@ -2,7 +2,6 @@ package com.namnx.jpa_querydsl.model;
 
 import com.querydsl.core.annotations.QueryEntity;
 import com.querydsl.core.annotations.QueryProjection;
-import com.querydsl.core.types.dsl.StringPath;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

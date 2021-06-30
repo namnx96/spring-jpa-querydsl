@@ -7,7 +7,6 @@ import com.namnx.jpa_querydsl.model.QProductEntity;
 import com.namnx.jpa_querydsl.repository.product.ProductRepository;
 import com.namnx.jpa_querydsl.util.PageableUtils;
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.Tuple;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.data.domain.Page;
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 @Service
-public class ProductService extends BaseService<ProductEntity, ProductRepository, ProductEntity> {
+public class ProductService extends BaseService<ProductEntity, ProductRepository> {
 
     public Page<ProductEntity> findAllWithNoJoin(FilterProductDto filter) {
         Pageable pageable = PageableUtils.from(filter);

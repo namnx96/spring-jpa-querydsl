@@ -17,14 +17,26 @@ public class PageableUtils {
     }
 
     public static <T extends PageParam> Pageable from(T pageParams) {
-        int page = pageParams.getPage() == null ? 0 : pageParams.getPage();
-        int size = pageParams.getSize() == null ? 50 : pageParams.getSize();
-        String sortField = pageParams.getSortField() == null ? "createdTime" : pageParams.getSortField();
-        String sortDir = pageParams.getSortDir() == null ? "DESC" : pageParams.getSortDir();
-        return from(sortDir, sortField, page, size);
+        return from(pageParams, false);
     }
 
-    public Pageable fromWithJpaSortUnsafe(String sortDir, String sortField, int page, int size) {
+    public static <T extends PageParam> Pageable from(T pageParams, boolean isSortUnsafe) {
+        int page = pageParams.getPage() == null ? 0 : pageParams.getPage();
+        int size = pageParams.getSize() == null ? 50 : pageParams.getSize();
+        String sortField = pageParams.getSortField();
+        String sortDir = pageParams.getSortDir();
+        if (sortField == null || sortDir == null) {
+            return PageRequest.of(page, size);
+        }
+        if (isSortUnsafe) {
+            return fromWithJpaSortUnsafe(sortDir, sortField, page, size);
+        } else {
+            return from(sortDir, sortField, page, size);
+        }
+
+    }
+
+    public static Pageable fromWithJpaSortUnsafe(String sortDir, String sortField, int page, int size) {
         Sort sort;
         if (ASC_DIR.equalsIgnoreCase(sortDir)) {
             sort = JpaSort.unsafe(Sort.Direction.ASC, "(" + sortField + ")");

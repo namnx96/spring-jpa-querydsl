@@ -3,7 +3,6 @@ package com.namnx.jpa_querydsl.web;
 import com.namnx.jpa_querydsl.dto.FilterProductDto;
 import com.namnx.jpa_querydsl.model.ProductEntity;
 import com.namnx.jpa_querydsl.service.ProductService;
-import com.querydsl.core.Tuple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

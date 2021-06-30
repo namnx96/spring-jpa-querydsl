@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
-public abstract class BaseService<E extends BaseEntity, R extends BaseRepository<E>, T> extends QueryDslRepositoryImpl<T>{
+public abstract class BaseService<E extends BaseEntity, R extends BaseRepository<E>> extends QueryDslRepositoryImpl {
 
     @Autowired
     protected R repository;
